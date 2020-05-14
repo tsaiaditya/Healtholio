@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Dashboard</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="dashboard.ejs"><h4>Healtholio</h4></a>
+          
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" style = "color: white" class="nav-link">Bank</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.ejs" style = "color: white" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <% users.forEach(function(user){ %>
+            <div class="container">
+                <div style = "padding: 2%">
+                    <div style = "border:1px solid black; border-radius: 10px;">
+                        <h3 style = "text-align: center;">Insurance Claim</h3>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6" style = "transform: translate(5%);">
+                                <h4>Name:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4><%= user.value.name %></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6" style = "transform: translate(5%);">
+                                <h4>Insurance Type:</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4><%= user.value.hospital_visits[0].insurance_type %></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6" style = "transform: translate(5%);">
+                                <h4>Outstanding Loan Amount(in Rs.):</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4><%= user.value.outstanding_loan_amt %></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6" style = "transform: translate(5%);">
+                                <h4>Insurance Amount(in Rs.):</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4><%= user.value.hospital_visits[0].insurance_amt %></h4>
+                            </div>
+                        </div>
+                        <div class="row" style = "transform: translate(10%); padding: 2%">
+                            <button class="btn btn-success" style = "margin-right: 4%">Accept</button>
+                            <button class="btn btn-danger" style = "margin-right: 4%">Reject</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </body>
+    <script>
+        $(document).ready(function(){
+            $("#prev_claims_disp").on("click",function(){
+                if($('#prev_claims').css("display") != "none"){
+                    $("#prev_claims_disp").html("View Previous Claims");    
+                }
+                else{
+                    $("#prev_claims_disp").html("Hide Claims");
+                }
+                $("#prev_claims").fadeToggle(200);
+            });
+            $("#make_claims_disp").on("click",function(){
+                $("#new_claim").fadeToggle(200);
+            })
+        });
+    </script>
+</html>
