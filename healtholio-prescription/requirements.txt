@@ -8,7 +8,7 @@ numpy==1.22.0
 pandas==0.25.3
 Pillow==9.3.0
 pkg-resources==0.0.0
-PyPDF2==1.27.5
+PyPDF2==1.27.9
 python-dateutil==2.8.1
 pytz==2019.3
 reportlab==3.5.55
